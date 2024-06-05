@@ -41,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Text(text),
           NumericKeyboard(
             onKeyboardTap: _onKeyboardTap,
-            textColor: Colors.red,
+            textStyle: TextStyle(
+                fontSize: 26, fontWeight: FontWeight.bold, color: Colors.black),
             rightButtonFn: () {
               setState(() {
                 text = text.substring(0, text.length - 1);

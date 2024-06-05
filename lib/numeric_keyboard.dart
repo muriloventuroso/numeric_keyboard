@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 typedef KeyboardTapCallback = void Function(String text);
 
 class NumericKeyboard extends StatefulWidget {
-  /// Color of the text [default = Colors.black]
-  final Color textColor;
-
   /// Display a custom right icon
   final Icon? rightIcon;
 
@@ -23,17 +20,22 @@ class NumericKeyboard extends StatefulWidget {
   /// Callback when an item is pressed
   final KeyboardTapCallback onKeyboardTap;
 
+  final double? buttonSize;
+
+  final TextStyle? textStyle;
+
   /// Main axis alignment [default = MainAxisAlignment.spaceEvenly]
   final MainAxisAlignment mainAxisAlignment;
 
   NumericKeyboard(
       {Key? key,
       required this.onKeyboardTap,
-      this.textColor = Colors.black,
       this.rightButtonFn,
       this.rightIcon,
       this.leftButtonFn,
       this.leftIcon,
+      this.buttonSize,
+      this.textStyle,
       this.mainAxisAlignment = MainAxisAlignment.spaceEvenly})
       : super(key: key);
 
@@ -83,8 +85,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.leftButtonFn,
                   child: Container(
                       alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
+                      width: widget.buttonSize ?? 50,
+                      height: widget.buttonSize ?? 50,
                       child: widget.leftIcon)),
               _calcButton('0'),
               InkWell(
@@ -92,8 +94,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.rightButtonFn,
                   child: Container(
                       alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
+                      width: widget.buttonSize ?? 50,
+                      height: widget.buttonSize ?? 50,
                       child: widget.rightIcon))
             ],
           ),
@@ -110,14 +112,15 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         },
         child: Container(
           alignment: Alignment.center,
-          width: 50,
-          height: 50,
+          width: widget.buttonSize ?? 50,
+          height: widget.buttonSize ?? 50,
           child: Text(
             value,
-            style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: widget.textColor),
+            style: widget.textStyle ??
+                TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
           ),
         ));
   }
