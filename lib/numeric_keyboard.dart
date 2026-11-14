@@ -1,6 +1,6 @@
 library numeric_keyboard;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 typedef KeyboardTapCallback = void Function(String text);
 
